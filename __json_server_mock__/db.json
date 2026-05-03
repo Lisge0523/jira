@@ -1,0 +1,208 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "高修文"
+    },
+    {
+      "id": 2,
+      "name": "熊天成"
+    },
+    {
+      "id": 3,
+      "name": "郑华"
+    },
+    {
+      "id": 4,
+      "name": "王文静"
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "name": "骑手管理",
+      "personId": 1,
+      "organization": "外卖组",
+      "created": 1604989757139,
+      "pin": true
+    },
+    {
+      "id": 2,
+      "name": "团购 APP",
+      "personId": 2,
+      "organization": "团购组",
+      "created": 1604989757139,
+      "pin": true
+    },
+    {
+      "id": 3,
+      "name": "物料管理系统",
+      "personId": 2,
+      "organization": "物料组",
+      "created": 1546300800000,
+      "pin": true
+    },
+    {
+      "id": 4,
+      "name": "总部管理系统",
+      "personId": 3,
+      "organization": "总部",
+      "created": 1604980000011
+    },
+    {
+      "id": 5,
+      "name": "送餐路线规划系统",
+      "personId": 4,
+      "organization": "外卖组",
+      "created": 1546900800000
+    },
+    {
+      "name": "骑手管理",
+      "organization": "管理部",
+      "personId": 3,
+      "creatorId": 5,
+      "id": 6,
+      "pin": true
+    }
+  ],
+  "kanbans": [
+    {
+      "id": 1,
+      "name": "待办",
+      "projectId": 1,
+      "order": 1
+    },
+    {
+      "id": 2,
+      "name": "进行中",
+      "projectId": 1,
+      "order": 2
+    },
+    {
+      "id": 3,
+      "name": "待办",
+      "projectId": 2,
+      "order": 3
+    },
+    {
+      "name": "已完成",
+      "projectId": 1,
+      "id": 4,
+      "order": 4
+    },
+    {
+      "name": "得测试",
+      "projectId": 1,
+      "id": 5,
+      "order": 5
+    },
+    {
+      "id": 6,
+      "name": "待办",
+      "projectId": 6,
+      "order": 6
+    },
+    {
+      "id": 7,
+      "name": "进行中",
+      "projectId": 6,
+      "order": 7
+    }
+  ],
+  "tasks": [
+    {
+      "id": 1,
+      "name": "任务1",
+      "projectId": 1,
+      "kanbanId": 1,
+      "typeId": 2,
+      "processorId": 1
+    },
+    {
+      "id": 5,
+      "name": "Bug测试",
+      "projectId": 1,
+      "kanbanId": 2,
+      "typeId": 1
+    },
+    {
+      "projectId": 1,
+      "name": "可以可以",
+      "kanbanId": 4,
+      "id": 4,
+      "typeId": 1
+    },
+    {
+      "id": 2,
+      "name": "任务2",
+      "projectId": 1,
+      "kanbanId": 1,
+      "typeId": 2
+    },
+    {
+      "projectId": 1,
+      "name": "222",
+      "kanbanId": 1,
+      "id": 3,
+      "typeId": 2
+    },
+    {
+      "projectId": 6,
+      "name": "222333",
+      "kanbanId": 7,
+      "creatorId": 5,
+      "id": 6,
+      "typeId": 1
+    },
+    {
+      "projectId": 6,
+      "name": "kkk ",
+      "kanbanId": 6,
+      "creatorId": 5,
+      "id": 7,
+      "typeId": 2
+    },
+    {
+      "projectId": 6,
+      "name": "333",
+      "kanbanId": 6,
+      "creatorId": 5,
+      "id": 8
+    }
+  ],
+  "taskTypes": [
+    {
+      "id": 0,
+      "name": "类型"
+    },
+    {
+      "id": 1,
+      "name": "Bug"
+    },
+    {
+      "id": 2,
+      "name": "Task"
+    }
+  ],
+  "epics": [
+    {
+      "id": 3,
+      "name": "史诗3",
+      "projectId": 2
+    },
+    {
+      "name": "1",
+      "id": 4
+    },
+    {
+      "name": "1",
+      "projectId": 1,
+      "id": 5
+    },
+    {
+      "name": "22",
+      "projectId": 1,
+      "id": 6
+    }
+  ]
+}
