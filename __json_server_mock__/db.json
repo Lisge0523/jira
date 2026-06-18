@@ -47,21 +47,15 @@
       "name": "总部管理系统",
       "personId": 3,
       "organization": "总部",
-      "created": 1604980000011
+      "created": 1604980000011,
+      "pin": true
     },
     {
       "id": 5,
       "name": "送餐路线规划系统",
       "personId": 4,
       "organization": "外卖组",
-      "created": 1546900800000
-    },
-    {
-      "name": "骑手管理",
-      "organization": "管理部",
-      "personId": 3,
-      "creatorId": 5,
-      "id": 6,
+      "created": 1546900800000,
       "pin": true
     }
   ],
@@ -88,25 +82,7 @@
       "name": "已完成",
       "projectId": 1,
       "id": 4,
-      "order": 4
-    },
-    {
-      "name": "得测试",
-      "projectId": 1,
-      "id": 5,
       "order": 5
-    },
-    {
-      "id": 6,
-      "name": "待办",
-      "projectId": 6,
-      "order": 6
-    },
-    {
-      "id": 7,
-      "name": "进行中",
-      "projectId": 6,
-      "order": 7
     }
   ],
   "tasks": [
@@ -142,32 +118,9 @@
     {
       "projectId": 1,
       "name": "222",
-      "kanbanId": 1,
+      "kanbanId": 2,
       "id": 3,
       "typeId": 2
-    },
-    {
-      "projectId": 6,
-      "name": "222333",
-      "kanbanId": 7,
-      "creatorId": 5,
-      "id": 6,
-      "typeId": 1
-    },
-    {
-      "projectId": 6,
-      "name": "kkk ",
-      "kanbanId": 6,
-      "creatorId": 5,
-      "id": 7,
-      "typeId": 2
-    },
-    {
-      "projectId": 6,
-      "name": "333",
-      "kanbanId": 6,
-      "creatorId": 5,
-      "id": 8
     }
   ],
   "taskTypes": [
