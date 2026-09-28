@@ -1,0 +1,21 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### IDE ###
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+
+### 本地私有配置（含数据库密码等），不要提交 ###
+application-local.yml
+application-local.properties
+
+### 日志 ###
+*.log
+logs/
+
+### 系统 ###
+.DS_Store
+Thumbs.db
