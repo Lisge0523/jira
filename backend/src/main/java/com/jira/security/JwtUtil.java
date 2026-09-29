@@ -16,8 +16,8 @@ import java.util.Date;
 public class JwtUtil {
     private final SecretKey key;
     private final long expireMillis;
-    public JwtUtil(@Value("{$jira.jwt.secret}") String secret,
-                   @Value("{jira.jwt.expire-hours}")long expireHours){
+    public JwtUtil(@Value("${jira.jwt.secret}") String secret,
+                   @Value("${jira.jwt.expire-hours}")long expireHours){
      this.key = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
      this.expireMillis = expireHours *3600_000L;
     }
