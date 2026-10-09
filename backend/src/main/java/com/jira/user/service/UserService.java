@@ -59,10 +59,8 @@ public class UserService {
         vo.setToken(jwtUtil.generateToken(user.getId(), user.getUsername()));
         return vo;
     }
-    public UserVO me(String token){
+    public UserVO me(Long userId, String token){
     //1. 解析 token 拿 userId —— token 无效/过期时，parseUserId 内部已经抛 401
-    Long userId = jwtUtil.parseUserId(token);
-    //查用户
     User user = userMapper.selectById(userId);
     if (user ==null){
         throw new BusinessException(ErrorCode.UNAUTHORIZED,"用户不存在");
