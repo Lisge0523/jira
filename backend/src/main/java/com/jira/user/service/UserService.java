@@ -12,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 用户业务逻辑。
  *
@@ -57,10 +59,8 @@ public class UserService {
         vo.setToken(jwtUtil.generateToken(user.getId(), user.getUsername()));
         return vo;
     }
-    public UserVO me(String token){
+    public UserVO me(Long userId, String token){
     //1. 解析 token 拿 userId —— token 无效/过期时，parseUserId 内部已经抛 401
-    Long userId = jwtUtil.parseUserId(token);
-    //查用户
     User user = userMapper.selectById(userId);
     if (user ==null){
         throw new BusinessException(ErrorCode.UNAUTHORIZED,"用户不存在");
@@ -71,5 +71,16 @@ public class UserService {
     vo.setName(user.getName());
     vo.setToken(token);
     return vo;
+    }
+    public List<UserVO> listUsers(){
+        return userMapper.selectAll().stream().map(u->{
+            UserVO vo = new UserVO();
+            vo.setId(u.getId());
+            vo.setName(u.getName());
+            vo.setEmail(u.getEmail());
+            vo.setTitle(u.getTitle());
+            vo.setOrganization(u.getOrganization());
+            return vo;
+        }).toList();
     }
 }

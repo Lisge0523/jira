@@ -16,7 +16,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *   kanban/    看板列                  【成员 B】
  *   task/      任务                    【成员 B】
  *   epic/      任务组                  【成员 B】
- *
  * 每个模块内部统一分：controller / service / mapper / entity / dto
  */
 @SpringBootApplication
