@@ -15,10 +15,11 @@ export const login = (data: { username: string; password: string }) => {
     },
     body: JSON.stringify(data),
   }).then(async (response) => {
+    const body = await response.json();
     if (response.ok) {
-      return handleUserResponse(await response.json());
+      return handleUserResponse(body.data);
     } else {
-      return Promise.reject(await response.json());
+      return Promise.reject(body);
     }
   });
 };
@@ -30,10 +31,11 @@ export const register = (data: { username: string; password: string }) => {
     },
     body: JSON.stringify(data),
   }).then(async (response) => {
+        const body = await response.json();
     if (response.ok) {
-      return handleUserResponse(await response.json());
+      return handleUserResponse(body.data);
     } else {
-      return Promise.reject(await response.json());
+      return Promise.reject(body);
     }
   });
 };
