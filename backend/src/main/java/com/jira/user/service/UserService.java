@@ -12,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 用户业务逻辑。
  *
@@ -71,5 +73,16 @@ public class UserService {
     vo.setName(user.getName());
     vo.setToken(token);
     return vo;
+    }
+    public List<UserVO> listUsers(){
+        return userMapper.selectAll().stream().map(u->{
+            UserVO vo = new UserVO();
+            vo.setId(u.getId());
+            vo.setName(u.getName());
+            vo.setEmail(u.getEmail());
+            vo.setTitle(u.getTitle());
+            vo.setOrganization(u.getOrganization());
+            return vo;
+        }).toList();
     }
 }

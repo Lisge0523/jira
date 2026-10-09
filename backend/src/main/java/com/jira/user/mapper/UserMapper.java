@@ -5,6 +5,9 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
+
 /**
  * 用户数据访问接口。
  *
@@ -34,4 +37,7 @@ public interface UserMapper {
      */
     @Select("SELECT * FROM sys_user WHERE id = #{id}")
     User selectById(Long id);
+//    用来返回全部用户列表
+    @Select("SELECT * FROM sys_user ORDER BY id")
+    List<User> selectAll();
 }
