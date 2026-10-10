@@ -23,6 +23,10 @@ mybatis:
     map-underscore-to-camel-case: true
 
 jira:
+  auth:
+    # 临时开关：A 的 JWT 拦截器还没好，先 false，成员校验暂时放过（项目存不存在还是会查的）
+    # 等 A 交付了改成 true 就行
+    enabled: false
   jwt:
     # 生产环境必须换成随机长字符串（至少 32 字符），并通过环境变量注入
     secret: ${JWT_SECRET:jira-backend-dev-secret-key-change-me-32bytes}

@@ -16,6 +16,12 @@ application-local.properties
 *.log
 logs/
 
+### 本地临时脚本（联调/启动用，不提交） ###
+/_*.ps1
+/_*.bat
+/_*.json
+/_*.txt
+
 ### 系统 ###
 .DS_Store
 Thumbs.db
