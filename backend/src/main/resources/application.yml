@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: jira-backend
+  profiles:
+    active: local
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -12,7 +14,7 @@ spring:
     #   1) 在 IDEA 运行配置的 Environment variables 里加  DB_USERNAME=root;DB_PASSWORD=你的密码
     #   2) 本文件临时填写（改完别提交）
     username: ${DB_USERNAME:root}
-    password: ${DB_PASSWORD:123456}
+    password: ${DB_PASSWORD:}
 
 mybatis:
   # MyBatis XML 放在 resources/mapper 下
