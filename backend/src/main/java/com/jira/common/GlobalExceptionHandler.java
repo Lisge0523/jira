@@ -3,9 +3,11 @@ package com.jira.common;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 /**
  * 全局异常处理：所有异常统一转成 Result，并给出合适的 HTTP 状态码。
@@ -53,5 +55,17 @@ public class GlobalExceptionHandler {
             // 其余业务错误：HTTP 200 + code 区分
             default -> HttpStatus.OK;
         };
+    }
+    /** 请求方法不支持：例如用 GET 访问只接受 POST 的接口 */
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public ResponseEntity <Result<Void>> handleMethodNotSupported (HttpRequestMethodNotSupportedException e) {
+        return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED)
+            .body(Result.fail( 405 , "请求方法不支持：" + e.getMethod()));
+    }
+    /** 路径不存在：访问了没有对应接口的地址 */
+    @ExceptionHandler(NoResourceFoundException.class)
+    public ResponseEntity <Result<Void>> handleNoResource (NoResourceFoundException e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+            .body(Result.fail(ErrorCode.NOT_FOUND));
     }
 }
