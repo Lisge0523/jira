@@ -8,10 +8,14 @@ import {
 import { Project } from "../types/project";
 import { cleanObject } from "../utils/index";
 
+export interface ProjectPage{
+  list:Project[];
+  total:number;
+}
 export const useProjects = (param?: Partial<Project>) => {
   const client = useHttp();
 
-  return useQuery<Project[]>(["projects", cleanObject(param)], () =>
+  return useQuery<ProjectPage>(["projects", cleanObject(param)], () =>
     client("projects", { data: param })
   );
 };
