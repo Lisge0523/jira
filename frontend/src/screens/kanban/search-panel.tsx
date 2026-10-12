@@ -53,7 +53,6 @@ export const SearchPanel = () => {
     setSearchParams({
       typeId: undefined,
       processorId: undefined,
-      tagId: undefined,
       name: undefined,
     });
   };
