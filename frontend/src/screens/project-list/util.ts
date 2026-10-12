@@ -3,10 +3,14 @@ import { useMemo } from "react";
 import { useProject } from "../../utils/project";
 // 项目列表搜索的参数
 export const useProjectsSearchParams = () => {
-  const [param, setParam] = useUrlQueryParam(["name", "personId"]);
+  const [param, setParam] = useUrlQueryParam(["name", "personId","page","size"]);
   return [
     useMemo(
-      () => ({ ...param, personId: Number(param.personId) || undefined }),
+      () => ({ ...param, 
+        personId: Number(param.personId) || undefined, 
+        page : Number(param.page)||1,
+        size : Number(param.size) || 10,
+      }),
       [param]
     ),
     setParam,
