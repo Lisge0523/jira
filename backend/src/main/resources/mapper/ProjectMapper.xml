@@ -27,4 +27,14 @@
         SELECT COUNT(*)
         <include refid="commonCondition"/>
     </select>
+    <update id = "update" >
+        UPDATE project
+        <set>
+            <if test = "name != null" > name = #{name}, </if>
+            <if test = "organization != null" > organization = #{organization}, </if>
+            <if test = "personId != null" > person_id = #{personId}, </if>
+            <if test = "pin != null" > pin = #{pin}, </if>
+        </set>
+        WHERE id = #{id}
+    </update>
 </mapper>
