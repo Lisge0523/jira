@@ -7,8 +7,8 @@ import { useProjectModal } from "../screens/project-list/util";
 
 export const ProjectPopover = () => {
   const { open } = useProjectModal();
-  const { data: projects, refetch } = useProjects();
-  const pinnedProjects = projects?.filter((project) => project.pin);
+  const { data: projectPage, refetch } = useProjects();
+  const pinnedProjects = projectPage?.list.filter((project) => project.pin);
 
   const content = (
     <ContentContainer>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jira.project.mapper.ProjectMapper">
+
+    <!-- 列表查询和总数统计共用的条件，抽出来避免写两遍 -->
+    <sql id="commonCondition">
+        FROM project p
+        JOIN project_member pm ON pm.project_id = p.id
+        WHERE pm.user_id = #{userId}
+        <if test="name != null and name != ''">
+            AND p.name LIKE CONCAT('%', #{name}, '%')
+        </if>
+        <if test="personId != null">
+            AND p.person_id = #{personId}
+        </if>
+    </sql>
+
+    <select id="selectPage" resultType="com.jira.project.entity.Project">
+        SELECT p.*
+        <include refid="commonCondition"/>
+        ORDER BY p.id
+        LIMIT #{offset}, #{size}
+    </select>
+
+    <select id="countByQuery" resultType="long">
+        SELECT COUNT(*)
+        <include refid="commonCondition"/>
+    </select>
+    <update id = "update" >
+        UPDATE project
+        <set>
+            <if test = "name != null" > name = #{name}, </if>
+            <if test = "organization != null" > organization = #{organization}, </if>
+            <if test = "personId != null" > person_id = #{personId}, </if>
+            <if test = "pin != null" > pin = #{pin}, </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+</mapper>

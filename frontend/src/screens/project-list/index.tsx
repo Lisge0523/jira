@@ -4,6 +4,7 @@ import { List } from "../../screens/project-list/list";
 import { useDocumentTitle } from "../../utils";
 import { useProjects } from "../../utils/project";
 import { useUsers } from "../../utils/user";
+import { Pagination } from "antd";
 import {
   useProjectModal,
   useProjectsSearchParams,
@@ -29,7 +30,9 @@ export const ProjectListScreen = () => {
 
   const [param, setParam] = useProjectsSearchParams();
   // 移除 useDebounce，只在 SearchPanel 中做防抖
-  const { isLoading, error, data: list } = useProjects(param);
+  const { isLoading, error, data } = useProjects(param);
+  const list = data?.list || [];
+  const total = data?.total || 0;
   const { data: users } = useUsers();
 
   return (
@@ -42,7 +45,18 @@ export const ProjectListScreen = () => {
       </Row>
       <SearchPanel users={users || []} param={param} setParam={setParam} />
       <ErrorBox error={error} />
-      <List loading={isLoading} users={users || []} dataSource={list || []} />
+      <List loading={isLoading} users={users || []} dataSource={list} />
+      {/* 新增：分页控件 */}
+      <Pagination
+        style={{ textAlign: "right", marginTop: "2rem" }}
+        current={param.page}
+        pageSize={param.size}
+        total={total}
+        showSizeChanger
+        pageSizeOptions={[5, 10, 20, 50]}
+        showTotal={(t) => `共 ${t} 条`}
+        onChange={(page, size) => setParam({ ...param, page, size })}
+      />
     </ScreenContainer>
   );
 };
