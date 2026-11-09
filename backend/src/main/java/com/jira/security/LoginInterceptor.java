@@ -11,8 +11,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 /**
- * 登录拦截器：统一校验 token，校验通过后把 userId 放进请求属性，
+ * 登录拦截器：从 HttpOnly Cookie 校验 token，校验通过后把 userId 放进请求属性，
  * 后续 Controller 用 @RequestAttribute ("userId") 取值。
+ *
+ * 凭证由 {@link TokenCookie} 统一管理，这里不再读 Authorization 头。
  */
 @Component
 @RequiredArgsConstructor
@@ -20,6 +22,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     public  static  final String ATTR_USER_ID = "userId";
 
     private  final JwtUtil jwtUtil;
+    private  final TokenCookie tokenCookie;
 
     @Override
     public boolean preHandle(HttpServletRequest request,
@@ -29,12 +32,12 @@ public class LoginInterceptor implements HandlerInterceptor {
         if (HttpMethod.OPTIONS.matches(request.getMethod())) {
             return true;
         }
-        String authHeader = request.getHeader("Authorization");
-        if ( authHeader == null || !authHeader.startsWith("Bearer ")) {
-            throw new BusinessException(ErrorCode.UNAUTHORIZED,"未登录或登录已过期");
+        String token = tokenCookie.read(request);
+        if (token == null) {
+            throw new BusinessException(ErrorCode.UNAUTHORIZED, "未登录或登录已过期");
         }
         // 解析失败（签名不对 / 已过期）内部会抛 401
-        Long userId = jwtUtil.parseUserId(authHeader.substring(7));
+        Long userId = jwtUtil.parseUserId(token);
 
         request.setAttribute(ATTR_USER_ID, userId);
         return true;// true = 放行；false = 中断请求

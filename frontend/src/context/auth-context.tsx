@@ -13,13 +13,14 @@ interface AuthForm {
 }
 
 const bootstrapUser = async () => {
-  let user = null;
-  const token = auth.getToken();
-  if (token) {
-    const data = await http("me", { token });
-    user = data.user;
+  try {
+    // 凭证在 HttpOnly Cookie 里，前端读不到，只能问后端"我是谁"
+    const data = await http("me", { skipAuthRedirect: true });
+    return data.user as User;
+  } catch {
+    // 没有 Cookie 或已过期：当作未登录，正常渲染登录页
+    return null;
   }
-  return user;
 };
 
 const AuthContext = React.createContext<

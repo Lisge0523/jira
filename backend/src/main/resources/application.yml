@@ -28,8 +28,16 @@ jira:
   jwt:
     # 生产环境必须换成随机长字符串（至少 32 字符），并通过环境变量注入
     secret: ${JWT_SECRET:jira-backend-dev-secret-key-change-me-32bytes}
-    # token 有效期（小时）
+    # token 有效期（小时）；Cookie 的 Max-Age 自动跟它对齐
     expire-hours: 24
+  auth:
+    # 登录凭证 Cookie 名
+    cookie-name: jira_token
+    # 生产环境走 HTTPS 时必须改成 true（并建议把名字改成 __Host-jira_token）
+    cookie-secure: false
+    # 前后端同站（端口不同也算同站）用 Lax 即可；
+    # 真跨站部署（前端在 A 域名、后端在 B 域名）需改为 None，且 cookie-secure 必须为 true
+    cookie-same-site: Lax
 
 logging:
   level:

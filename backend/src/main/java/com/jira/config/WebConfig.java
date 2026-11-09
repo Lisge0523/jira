@@ -15,7 +15,8 @@ public class WebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loginInterceptor)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/login","/register");
+                // 登录、注册不需要凭证；退出登录必须放行，否则过期的 Cookie 会把退出也拦成 401
+                .excludePathPatterns("/login","/register","/logout");
 
     }
 }

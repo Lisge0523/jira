@@ -13,6 +13,5 @@ public class UserVO {
     private String title;
     private String organization;
 
-//仅登录/me 接口返回
-    private String token;
+// 注意：登录凭证走 HttpOnly Cookie，这里不返回 token
 }
