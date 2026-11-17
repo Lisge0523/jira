@@ -73,16 +73,16 @@
       "order": 2
     },
     {
-      "id": 3,
-      "name": "待办",
-      "projectId": 2,
-      "order": 3
-    },
-    {
       "name": "已完成",
       "projectId": 1,
       "id": 4,
-      "order": 5
+      "order": 3
+    },
+    {
+      "id": 3,
+      "name": "待办",
+      "projectId": 2,
+      "order": 4
     }
   ],
   "tasks": [
@@ -95,16 +95,9 @@
       "processorId": 1
     },
     {
-      "id": 5,
-      "name": "Bug测试",
-      "projectId": 1,
-      "kanbanId": 2,
-      "typeId": 1
-    },
-    {
       "projectId": 1,
       "name": "可以可以",
-      "kanbanId": 4,
+      "kanbanId": 1,
       "id": 4,
       "typeId": 1
     },
@@ -116,9 +109,34 @@
       "typeId": 2
     },
     {
+      "id": 5,
+      "name": "Bug测试",
+      "projectId": 1,
+      "kanbanId": 2,
+      "typeId": 1
+    },
+    {
+      "projectId": 1,
+      "name": "可以可u",
+      "kanbanId": 2,
+      "id": 6
+    },
+    {
+      "projectId": 1,
+      "name": "酷酷酷酷酷酷 ",
+      "kanbanId": 2,
+      "id": 7
+    },
+    {
+      "projectId": 1,
+      "name": "上的",
+      "kanbanId": 4,
+      "id": 8
+    },
+    {
       "projectId": 1,
       "name": "222",
-      "kanbanId": 2,
+      "kanbanId": 4,
       "id": 3,
       "typeId": 2
     }
@@ -146,11 +164,6 @@
     {
       "name": "1",
       "id": 4
-    },
-    {
-      "name": "1",
-      "projectId": 1,
-      "id": 5
     },
     {
       "name": "22",
